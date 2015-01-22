@@ -14,7 +14,7 @@ HEADERS = {
 
 OPTIONAL_PARAMS = ['size', 'page', 'anchor']
 
-DEVICE_TOKEN = '0cc1dab0dab0dab0dab0dab0dab0dab0dab0dab0dab0dab0dab0dab0dab0dab0'
+DEVICE_TOKEN = None
 
 ENDPOINTS = {
 
