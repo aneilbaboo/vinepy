@@ -9,14 +9,14 @@ from functools import partial
 from json import dumps
 
 class API(object):
-    def __init__(self, username=None, password=None, DEBUG=False):
+    def __init__(self, username=None, password=None, DEBUG=False, device_token=DEVICE_TOKEN):
         self.username = username
         self.password = password
         self._session_id = None
         self.DEBUG = DEBUG
 
         self._make_dynamic_methods()
-        self.user = self.login(username=username, password=password) if self.username and self.password else None
+        self.user = self.login(username=username, password=password, device_token=device_token) if self.username and self.password else None
 
 
     def _make_dynamic_methods(self):
@@ -129,7 +129,7 @@ class API(object):
             response = requests.request(meta['request_type'], url, params=built_params, data=built_data, headers=headers, verify=cafile, proxies=proxies)
             print 'REQUESTED: %s [%s]' % (url, response.status_code)
         else:
-            response = requests.request(meta['request_type'], url, params=built_params, data=built_data, headers=headers)
+            response = requests.request(meta['request_type'], url, params=built_params, data=built_data, headers=headers, verify=False)
 
         if response.headers.get('X-Upload-Key'):
             return response.headers['X-Upload-Key']
